@@ -2,7 +2,7 @@
 chain = "streamr-spec.json"
 base_path = "./parity0"
 [network]
-port = 30300
+port = 30309
 allow_ips = "all"
 nat = "0.0.0.0"
 [rpc]
