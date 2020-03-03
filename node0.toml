@@ -1,0 +1,24 @@
+[parity]
+chain = "streamr-spec.json"
+base_path = "./parity0"
+[network]
+port = 30300
+allow_ips = "all"
+nat = "0.0.0.0"
+[rpc]
+interface = "all"
+port = 8540
+apis = ["all"]
+cors = ["all"]
+hosts = ["all"]
+[websockets]
+interface = "all"
+port = 8450
+origins = ["all"]
+[account]
+password = ["node.pwds"]
+[mining]
+engine_signer = "0x00Bd138aBD70e2F00903268F3Db08f2D25677C9e"
+reseal_on_txs = "all"
+reseal_min_period = 4000
+reseal_max_period = 60000

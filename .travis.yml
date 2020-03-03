@@ -1,0 +1,24 @@
+dist: bionic
+services:
+- docker
+branches:
+  only:
+  - master
+  - "/^v\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+env:
+  global:
+  - OWNER=streamr
+  - IMAGE_NAME=open-ethereum-poa
+  - secure: OrFkhhHD5XydNBi5p0WE3pt/NLT3Syn8hS24nndvayfwpOVJ0NXsZwzJkY3Ty76/05YMKYMFzsBqkX/xdN2uGMNoYXoPrLhXUE+K/BDqR54aln+IYVCuiUoFFeBMmPZby+OpRq54djEVVecmygDplMEvabDlzWBCUoeFnU+lNLl5rYkKhXBcdTsQje6bi884N4bmGvaTFyXRrSNufL4cf5JfeAIy2IdkdqyyCAxJ7gqfBVJalorBUUcGQkFKh+hMMjssi3g5X5Krga6sTZbn52gSjnGwUJjUyQnfRgSxuLrzFQWezA1H1tExfl0cwVPbk47gX9bAaad4OQ0AxRyfasoPcxIFt82CvG5OpP4Fa249FBz9AkDD3+9mKjINQmS9Ue7D4535uwjJ1YDX8zhn3NRqiMCP0BSLNlFQ+6OTKxXUFYgWUVMW1986cbuhP82XSVGpQ72gkPYUm1AaxEwBB+STacebraQrizUBq5xlRMjHPYxkRt0kQSSWz24kmZxMu9jqLnEYn+lPDtAmAGox0i6yqM/uOQKG0GlBXtW6wFXUqze1c2pH65wYO+jXaFHbrblhsENMYqzoq33vPJb2P0PTwmrHODKMGSHyr1HCPkUpMt0VGOUVQ4UcbT+AOFk8ZURg1FCYHICBc9zovtboVFNY1ohbw/Ec9/CJXImEbGg=
+  - secure: CbVGgvQUx+tZoYPUiq6ChbOsop3H/XAvHCQUymWuYrfw402RerA/SpkmFkuBUQw3wjy69lkYK2JnMbn6VQ970QOmnnU2p0Url0In6MXrQcpf6O3aHMuysndPEdQ+C/0mmEDM/242ocgmMw79Nh0Fv5QG5+HrOUbB1KUXoqX5ZGFIR+Sb4GruBOrzxaC2kvi2GIx7umOHVY6EkQcdU4bu3mVZptBXdr6HRWBMX1OHkPh1Mus58uZihVuu604/raWAJm5Ha4JeqECZFURJHl0Q3w7bMuwDD95JD9QqNbRfuKUfR1mitLfNNfRjLwyofPcBX2FRkDLDBKUtiiBEYZsCbFHMkMvt/YO1gr01ZvMkpA70e4xdgadz73H2327OEeEyLlgdxLcbCo7yvevu8AicguxpofjFwxdrAUaVRsgije1PsfqUDQYy4/vk5E0ZfhdUxKJd8IFl1YRsTBDrnR0F3l31piZPUj2LoMKkrueP41g9dsiTeRUUnjyV3tFvaITOcRKgz+3dLdhIRScxUU4KvG/Ox4XBRaS2HIE4qa+BFe5wvUd2n/7ZXQQ0+LZiIVeBIXSo9KRxCpMPjZ38qwatc+o5o/lT9pG0z33oihxFvPG8SlXyT8fpVR4mLQI0noo2mD0dXehRdgjv61BD75igL01Mw7WIQ4yZa+I2DyopoQI=
+jobs:
+  include:
+  - stage: Build docker (Dev/Nightly)
+    if: tag IS blank
+    install: true
+    script:
+    - docker build -t $OWNER/$IMAGE_NAME:local .
+    deploy:
+    - provider: script
+      script:
+      - ".travis_scripts/deploy_docker.sh dev"
