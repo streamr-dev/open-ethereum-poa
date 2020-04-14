@@ -21,5 +21,5 @@ password = ["node.pwds"]
 engine_signer = "0x00Bd138aBD70e2F00903268F3Db08f2D25677C9e"
 reseal_on_txs = "all"
 reseal_min_period = 4000
-reseal_max_period = 60000
+reseal_max_period = 5000
 min_gas_price = 1000000000
