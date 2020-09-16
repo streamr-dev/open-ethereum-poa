@@ -1,6 +1,6 @@
 [parity]
 chain = "streamr-spec.json"
-base_path = "./parity0"
+base_path = "./parity_data"
 [network]
 port = 30309
 allow_ips = "all"
