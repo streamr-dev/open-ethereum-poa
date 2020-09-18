@@ -2,6 +2,14 @@
 
 #default values
 export CHAIN_ID=${CHAIN_ID-0x2323}
+#mkdir if not exists
+mkdir -p parity_data
+#if parity_data is empty, use parity_data.default as initial contents
+if [ ! "$(ls -A parity_data)" ]
+then
+    echo "parity_data is empty. populating with parity_data.default"
+    cp -r parity_data.default/* parity_data/
+fi
 
 env
 
