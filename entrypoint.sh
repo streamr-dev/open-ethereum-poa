@@ -23,4 +23,4 @@ done
 
 # launch parity the same way as original Dockerfile does
 # see https://github.com/paritytech/parity-ethereum/blob/2662d1925ec794f3ad7c5759b2412ff5128d259b/scripts/docker/hub/Dockerfile
-/bin/parity $@
+/bin/parity --jsonrpc-threads 0 --no-discovery --force-sealing --fast-unlock $@
